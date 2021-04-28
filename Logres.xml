@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Xml>
+<Xml>
+  <iValue>
+    <!--Un exemple...-->
+    <name>Excalibur</name>
+    <!--Nom-->
+    <desc>Bénéfice - relique légendaire apportant l'invincibilité au combat.</desc>
+    <!--Description-->
+    <type>3</type>
+    <!--0: indicateur, 1: groupe, 2: politique, 3: benefice, 4: crise-->
+    <result>0</result>
+    <!--0 : rien (inutile), 1 : fait gagner la partie, 2 : fait perdre la partie-->
+    <cost>linear</cost>
+    <!--Fonction. Cout de mise en oeuvre (inutile ici)-->
+    <effect>linear</effect>
+    <!--Fonction. Efficacite (inutile ici)-->
+    <active>true</active>
+    <!--Commence activee-->
+    <actThres>0</actThres>
+    <!--Seuil d'activation (inutile ici)-->
+    <deactThres>9999</deactThres>
+    <!--Seuil de desactivation (inutile ici)-->
+    <availableAt>0</availableAt>
+    <!--Tour disponible (inutile ici)-->
+    <min>0</min>
+    <!--Valeur minimale-->
+    <max>1</max>
+    <!--Valeur maximale-->
+    <value>1</value>
+    <!--Valeur de depart - c'est la position entre min et max qui compte-->
+    <money>1000</money>
+    <!--Si positif : rapporte par tour, si negatif : cout de mise en place / par tour-->
+    <glory>20</glory>
+    <!--Idem money-->
+    <difficulty>hard</difficulty>
+    <!--Disponible jusqu'a cette difficulte incluse (inutile ici : actif est vrai)-->
+    <outputs>
+      <value val="Chevaliers" weight="0,02"/>
+      <value val="Paysans" weight="0,03"/>
+      <value val="Barbares" weight="-0,05"/>
+      <value val="Prestige" weight="0,007"/>
+    </outputs>
+    <!--Liste d'influences positives ou negatives de -1 a +1 avec des ','-->
+  </iValue>
+  <iValue>
+    <name>Paysans</name>
+    <desc>Groupe - les cultivateurs et éleveurs, petits artisans et commercants, base de la societe</desc>
+    <type>1</type>
+    <cost>linear</cost>
+    <effect>sigmoid</effect>
+    <active>true</active>
+    <min>0</min>
+    <max>100</max>
+    <value>40</value>
+    <outputs>
+      <value val="Chevaliers" weight="0,005"/>
+      <value val="Barbares" weight="0,01"/>
+      <value val="Graal" weight="0,001"/>
+      <value val="Revolte" weight="-0,03"/>
+      <value val="Abondance" weight="0,03"/>
+      <value val="Egalite" weight="0,001"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Chevaliers</name>
+    <desc>Groupe - les agents principaux des quêtes et de la défense du territoire</desc>
+    <type>1</type>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <active>true</active>
+    <min>0</min>
+    <max>100</max>
+    <value>50</value>
+    <outputs>
+      <value val="Paysans" weight="0,01"/>
+      <value val="Barbares" weight="-0,03"/>
+      <value val="Graal" weight="0,003"/>
+      <value val="Chaos" weight="-0,02"/>
+      <value val="Prestige" weight="0,02"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Barbares</name>
+    <desc>Groupe - les envahisseurs saxons, pictes, huns, goths, vikings, vandales, burgondes, et généralement le reste du monde</desc>
+    <type>1</type>
+    <cost>noNegative</cost>
+    <effect>noNegative</effect>
+    <active>true</active>
+    <min>0</min>
+    <max>100</max>
+    <value>25</value>
+    <outputs>
+      <value val="Paysans" weight="-0,05"/>
+      <value val="Chevaliers" weight="-0,01"/>
+      <value val="Chaos" weight="0,05"/>
+      <value val="Revolte" weight="0,03"/>
+      <value val="Mordred" weight="0,005"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Pauvrete</name>
+    <desc>Indicateur - taux de personnes considerees comme pauvres (0-100)</desc>
+    <type>0</type>
+    <cost>linear</cost>
+    <effect>sigmoid</effect>
+    <active>true</active>
+    <min>0</min>
+    <max>100</max>
+    <value>90</value>
+    <outputs>
+      <value val="Paysans" weight="0,02"/>
+      <value val="Revolte" weight="0,005"/>
+      <value val="Mordred" weight="0,001"/>
+      <value val="Disette" weight="0,01"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Education</name>
+    <desc>Indicateur - taux de personnes ayant une bonne éducation (0-100)</desc>
+    <type>0</type>
+    <cost>linear</cost>
+    <effect>noNegative</effect>
+    <active>true</active>
+    <min>0</min>
+    <max>100</max>
+    <value>15</value>
+    <outputs>
+      <value val="Paysans" weight="0,005"/>
+      <value val="Chevaliers" weight="0,05"/>
+      <value val="Graal" weight="0,001"/>
+      <value val="legende" weight="0,01"/>
+      <value val="ageDOr" weight="0,002"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Hygiene</name>
+    <desc>Indicateur - degre d'hygiène moyen (0-10)</desc>
+    <type>0</type>
+    <cost>linear</cost>
+    <effect>linear</effect>
+    <active>true</active>
+    <min>0</min>
+    <max>10</max>
+    <value>4</value>
+    <outputs>
+      <value val="Epidemie" weight="-0,05"/>
+      <value val="BonneSante" weight="0,02"/>
+      <value val="Mordred" weight="-0,001"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Egalite</name>
+    <desc>Indicateur - inverse du carré de la distance entre le plus riche et le plus pauvre, normalisé entre 1 et 1000</desc>
+    <type>0</type>
+    <cost>linear</cost>
+    <effect>linear</effect>
+    <active>true</active>
+    <min>1</min>
+    <max>1000</max>
+    <value>250</value>
+    <outputs>
+      <value val="Pauvrete" weight="-0,03"/>
+      <value val="Paysans" weight="0,05"/>
+      <value val="Chaos" weight="-0,02"/>
+      <value val="Mordred" weight="-0,001"/>
+      <value val="Graal" weight ="0,005"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Criminalite</name>
+    <desc>Indicateur - nombre de jours avec crime violents dans l'année</desc>
+    <type>0</type>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <active>true</active>
+    <min>0</min>
+    <max>366</max>
+    <value>50</value>
+    <outputs>
+      <value val="Chaos" weight="0,05"/>
+      <value val="Mordred" weight="0,002"/>
+      <value val="Paysans" weight="-0,02"/>
+      <value val="Securite" weight="-0,05"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Prestige</name>
+    <desc>Indicateur - le prestige général, indexé entre 0 et 1000</desc>
+    <type>0</type>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <active>true</active>
+    <min>0</min>
+    <max>1000</max>
+    <value>250</value>
+    <glory>10</glory>
+    <outputs>
+      <value val="Criminalite" weight="-0,005"/>
+      <value val="Chevaliers" weight="0,02"/>
+      <value val="Graal" weight="0,001"/>
+      <value val="AgeDOr" weight="0,01"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Subventions</name>
+    <desc>Politique - dépense périodique de fonds d'aide aux agriculteurs, artisans, commercants ; indemnisations et gratifications</desc>
+    <type>2</type>
+    <cost>policyLinear</cost>
+    <effect>policyLog</effect>
+    <active>false</active>
+    <availableAt>1</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>-10000</money>
+    <glory>-10</glory>
+    <outputs>
+      <value val="Paysans" weight="0,05"/>
+      <value val="Egalite" weight="0,07"/>
+      <value val="Abondance" weight="0,02"/>
+      <value val="Disette" weight="-0,03"/>
+      <value val="Revolte" weight="-0,01"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Ecoles</name>
+    <desc>Politique - financement d'une certaine education publique</desc>
+    <type>2</type>
+    <cost>policyExp</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>2</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>-50000</money>
+    <glory>-20</glory>
+    <outputs>
+      <value val="Paysans" weight="0,01"/>
+      <value val="Chevaliers" weight="0,02"/>
+      <value val="Education" weight="0,07"/>
+      <value val="Legende" weight="0,002"/>
+      <value val="Graal" weight="0,001"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Theatres</name>
+    <desc>Politique - financement de lieux de proclamation d'art dramatique et lyrique</desc>
+    <type>2</type>
+    <cost>policyExp</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>3</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>-30000</money>
+    <glory>-20</glory>
+    <outputs>
+      <value val="Paysans" weight="-0,002"/>
+      <value val="Chevaliers" weight="0,05"/>
+      <value val="Legende" weight="0,07"/>
+      <value val="Graal" weight="0,001"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Thermes</name>
+    <desc>Politique - creation et entretiens de bains publics et d'un réseau d'eau potable</desc>
+    <type>2</type>
+    <cost>policyLinear</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>5</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>-100000</money>
+    <glory>-25</glory>
+    <outputs>
+      <value val="Paysans" weight="0,01"/>
+      <value val="Chevaliers" weight="0,03"/>
+      <value val="Hygiene" weight="0,07"/>
+      <value val="Epidemie" weight="-0,02"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Gardes</name>
+    <desc>Politique - financement d'un corps de gens d'armes, de milices et de sentinelles</desc>
+    <type>2</type>
+    <cost>policyExp</cost>
+    <effect>policyLinear</effect>
+    <active>true</active>
+    <min>1</min>
+    <max>100</max>
+    <value>10</value>
+    <money>-7500</money>
+    <glory>-10</glory>
+    <outputs>
+      <value val="Paysans" weight="0,002"/>
+      <value val="Chevaliers" weight="0,005"/>
+      <value val="Barbares" weight="-0,01"/>
+      <value val="Criminalite" weight="-0,02"/>
+      <value val="Chaos" weight="-0,01"/>
+      <value val="Securite" weight="0,005"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Juges</name>
+    <desc>Politique - financement d'un système judiciaire complet</desc>
+    <type>2</type>
+    <cost>policyExp</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>5</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>-75000</money>
+    <glory>-30</glory>
+    <outputs>
+      <value val="Chevaliers" weight="0,005"/>
+      <value val="Egalite" weight="0,001"/>
+      <value val="AgeDOr" weight="0,01"/>
+      <value val="Chaos" weight="-0,01"/>
+      <value val="Prestige" weight="0,003"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Doleances</name>
+    <desc>Politique - plaintes directes du peuple à la cour et indemnisations</desc>
+    <type>2</type>
+    <cost>policyExp</cost>
+    <effect>policyLog</effect>
+    <active>false</active>
+    <availableAt>1</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>-5000</money>
+    <glory>-5</glory>
+    <outputs>
+      <value val="Paysans" weight="0,01"/>
+      <value val="Chevaliers" weight="-0,001"/>
+      <value val="Pauvrete" weight="-0,002"/>
+      <value val="AgeDOr" weight="0,001"/>
+      <value val="Prestige" weight="0,001"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Enchanteurs</name>
+    <desc>Politique - entretien de mages, enchanteurs et druides</desc>
+    <type>2</type>
+    <cost>policyLinear</cost>
+    <effect>policyLinear</effect>
+    <active>false</active>
+    <availableAt>2</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <money>-50000</money>
+    <glory>-30</glory>
+    <outputs>
+      <value val="Chevaliers" weight="0,005"/>
+      <value val="Barbares" weight="-0,002"/>
+      <value val="Prestige" weight="0,01"/>
+      <value val="Legende" weight="0,002"/>
+      <value val="Merlin" weight="0,001"/>
+      <value val="Graal" weight="0,001"/>
+      <value val="Malediction" weight="-0,005"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Pretres</name>
+    <desc>Politique - fonds accordes au culte chrétien, prêtres, curés, abbés</desc>
+    <type>2</type>
+    <cost>policyLog</cost>
+    <effect>policyLinear</effect>
+    <active>true</active>
+    <min>1</min>
+    <max>100</max>
+    <value>25</value>
+    <money>-50000</money>
+    <glory>-10</glory>
+    <outputs>
+      <value val="Chevaliers" weight="0,002"/>
+      <value val="Prestige" weight="0,005"/>
+      <value val="Legende" weight="0,01"/>
+      <value val="Graal" weight="0,003"/>
+      <value val="Malediction" weight="-0,01"/>
+      <value val="Pauvrete" weight="0,007"/>
+      <value val="Criminalite" weight="0,001"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Impots</name>
+    <desc>Politique - taxe genéralisée pour tous permettant de lever le plus de fonds, mais tres impopulaire</desc>
+    <type>2</type>
+    <cost>policyLinear</cost>
+    <effect>policyExp</effect>
+    <active>true</active>
+    <min>1</min>
+    <max>100</max>
+    <value>20</value>
+    <money>2500000</money>
+    <glory>-40</glory>
+    <outputs>
+      <value val="Paysans" weight="-0,15"/>
+      <value val="Chevaliers" weight="-0,25"/>
+      <value val="Pauvrete" weight="0,04"/>
+      <value val="Egalite" weight="0,15"/>
+      <value val="Criminalite" weight="0,03"/>
+      <value val="Revolte" weight="0,07"/>
+      <value val="Disette" weight="0,07"/>
+      <value val="Chaos" weight="0,07"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>TaxeLuxe</name>
+    <desc>Politique - taxe sur les produits étrangers et luxueux, visant les personnes aisées</desc>
+    <type>2</type>
+    <cost>policyLinear</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>2</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>200000</money>
+    <glory>-25</glory>
+    <outputs>
+      <value val="Paysans" weight="0,07"/>
+      <value val="Chevaliers" weight="-0,4"/>
+      <value val="Pauvrete" weight="-0,02"/>
+      <value val="Egalite" weight="0,25"/>
+      <value val="Criminalite" weight="0,05"/>
+      <value val="Revolte" weight="0,01"/>
+      <value val="Disette" weight="-0,01"/>
+      <value val="Chaos" weight="0,05"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>TaxeAlcool</name>
+    <desc>Politique - taxe supplementaire sur les alcools visant a reduire les abus, très impopulaire</desc>
+    <type>2</type>
+    <cost>policyLinear</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>3</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>10000</money>
+    <glory>-35</glory>
+    <outputs>
+      <value val="Paysans" weight="-0,4"/>
+      <value val="Chevaliers" weight="-0,4"/>
+      <value val="Pauvrete" weight="-0,01"/>
+      <value val="Egalite" weight="0,05"/>
+      <value val="Criminalite" weight="0,05"/>
+      <value val="Revolte" weight="0,07"/>
+      <value val="Disette" weight="-0,02"/>
+      <value val="Hygiene" weight="0,6"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>TaxeFonciere</name>
+    <desc>Politique - taxe sur les propriétaires terriens, redistributive dans une certaine mesure</desc>
+    <type>2</type>
+    <cost>policyLinear</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>5</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>500000</money>
+    <glory>-20</glory>
+    <outputs>
+      <value val="Paysans" weight="0,08"/>
+      <value val="Chevaliers" weight="-0,8"/>
+      <value val="Pauvrete" weight="-0,03"/>
+      <value val="Egalite" weight="0,7"/>
+      <value val="Criminalite" weight="0,1"/>
+      <value val="Revolte" weight="-0,02"/>
+      <value val="Disette" weight="-0,02"/>
+      <value val="Prestige" weight="-0,1"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Emprunts</name>
+    <type>2</type>
+    <desc>Politique - emprunts aux pays voisins, dangereux pour l'image et les repercussions militaires</desc>
+    <cost>policyExp</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>5</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>1000000</money>
+    <glory>-40</glory>
+    <outputs>
+      <value val="Barbares" weight="0,7"/>
+      <value val="Prestige" weight="-0,7"/>
+      <value val="Chaos" weight="0,2"/>
+      <value val="Mordred" weight="0,1"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>RepousserBarbares</name>
+    <type>2</type>
+    <desc>Politique - Quête permanente de défense</desc>
+    <cost>policyLinear</cost>
+    <effect>policyLinear</effect>
+    <active>true</active>
+    <min>1</min>
+    <max>100</max>
+    <value>10</value>
+    <money>-100000</money>
+    <glory>10</glory>
+    <outputs>
+      <value val="Barbares" weight="-0,07"/>
+      <value val="Chevaliers" weight="-0,01"/>
+      <value val="Paysans" weight="0,025"/>
+      <value val="Criminalite" weight="-0,005"/>
+      <value val="Securite" weight="0,007"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>AgrandirTerritoires</name>
+    <type>2</type>
+    <desc>Politique - Quête d'expansion offensive</desc>
+    <cost>policyExp</cost>
+    <effect>policyExp</effect>
+    <active>false</active>
+    <availableAt>3</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>-500000</money>
+    <glory>20</glory>
+    <outputs>
+      <value val="Chevaliers" weight="0,01"/>
+      <value val="Prestige" weight="0,05"/>
+      <value val="Mordred" weight="0,005"/>
+      <value val="Chaos" weight="0,01"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>TemplesPerdus</name>
+    <type>2</type>
+    <desc>Politique - Exploration fastidieuse mais lucrative de ruines et de lieux ésoteriques</desc>
+    <cost>policyLinear</cost>
+    <effect>policyLinear</effect>
+    <active>false</active>
+    <availableAt>2</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>250000</money>
+    <glory>25</glory>
+    <outputs>
+      <value val="Chevaliers" weight="-0,015"/>
+      <value val="Prestige" weight="0,075"/>
+      <value val="Malediction" weight="0,1"/>
+      <value val="Legende" weight="0,02"/>
+      <value val="ChaudronDAbondance" weight="0,01"/>
+    </outputs>
+ </iValue>
+  <iValue>
+   <name>Monstres</name>
+   <type>2</type>
+   <desc>Politique - Quête de combats contre des monstres terrifiant la population</desc>
+    <cost>policyLinear</cost>
+    <effect>policyLinear</effect>
+    <active>false</active>
+    <availableAt>3</availableAt>
+    <min>1</min>
+    <max>100</max>
+    <value>0</value>
+    <money>-100000</money>
+    <glory>30</glory>
+    <outputs>
+      <value val="Chevaliers" weight="-0,025"/>
+      <value val="Paysans" weight="0,07"/>
+      <value val="Prestige" weight="0,15"/>
+      <value val="Malediction" weight="0,02"/>
+      <value val="Legende" weight="0,02"/>
+      <value val="LanceDeLug" weight="0,01"/>
+    </outputs>
+ </iValue>
+  <iValue>
+    <name>Bandits</name>
+    <type>2</type>
+    <desc>Politique - Quête de lutte contre les brigands, voleurs et criminels</desc>
+    <cost>policyLinear</cost>
+    <effect>policyLog</effect>
+    <active>true</active>
+    <min>1</min>
+    <max>100</max>
+    <value>5</value>
+    <money>-100000</money>
+    <glory>10</glory>
+    <outputs>
+      <value val="Chevaliers" weight="-0,005"/>
+      <value val="Paysans" weight="0,08"/>
+      <value val="Prestige" weight="0,07"/>
+      <value val="Legende" weight="0,008"/>
+      <value val="Criminalite" weight="-0,01"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Dragons</name>
+    <type>2</type>
+    <desc>Politique - Quête epique contre les dragons</desc>
+    <cost>policyExp</cost>
+    <effect>policyExp</effect>
+    <min>1</min>
+    <max>100</max>
+    <active>false</active>
+    <availableAt>5</availableAt>
+    <money>-750000</money>
+    <glory>250</glory>
+    <outputs>
+      <value val="Chevaliers" weight="-0,05"/>
+      <value val="Paysans" weight="0,08"/>
+      <value val="Prestige" weight="0,25"/>
+      <value val="Legende" weight="0,25"/>
+      <value val="Graal" weight="0,007"/>
+      <value val="LanceDeLug" weight="0,01"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>QueteGraal</name>
+    <type>2</type>
+    <desc>Politique - la Quête par excellence, incroyablement difficile</desc>
+    <cost>policyExp</cost>
+    <effect>policyLog</effect>
+    <min>1</min>
+    <max>100</max>
+    <active>false</active>
+    <availableAt>1</availableAt>
+    <money>-1000000</money>
+    <glory>1</glory>
+    <outputs>
+      <value val="Graal" weight="0,1"/>
+      <value val="Mordred" weight="0,025"/>
+      <value val="Chevaliers" weight="-0,03"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Abondance</name>
+    <type>3</type>
+    <desc>Bénéfice - les récoltes sont abondantes et le pays est prospère</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>750</actThres>
+    <deactThres>500</deactThres>
+    <value>0</value>
+    <glory>50</glory>
+    <money>100000</money>
+    <outputs>
+      <value val="Paysans" weight="0,025"/>
+      <value val="Graal" weight="0,002"/>
+      <value val="Prestige" weight="0,007"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>AgeDOr</name>
+    <type>3</type>
+    <desc>Benefice - le royaume est éclairé, ses réalisations grandioses et sa réputation éclatante</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>800</actThres>
+    <deactThres>700</deactThres>
+    <value>0</value>
+    <glory>100</glory>
+    <money>50000</money>
+    <outputs>
+      <value val="Chevaliers" weight="0,025"/>
+      <value val="Graal" weight="0,002"/>
+      <value val="Prestige" weight="0,007"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Securite</name>
+    <type>3</type>
+    <desc>Bénéfice - la défense est sans pareille</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>850</actThres>
+    <deactThres>800</deactThres>
+    <value>0</value>
+    <glory>25</glory>
+    <money>200000</money>
+    <outputs>
+      <value val="Barbares" weight="-0,02"/>
+      <value val="Graal" weight="0,002"/>
+      <value val="Prestige" weight="0,007"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>BonneSante</name>
+    <type>3</type>
+    <desc>Bénéfice - le peuple a une santé de fer</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>600</actThres>
+    <deactThres>550</deactThres>
+    <value>0</value>
+    <glory>40</glory>
+    <money>50000</money>
+    <outputs>
+      <value val="Paysans" weight="0,03"/>
+      <value val="Graal" weight="0,002"/>
+      <value val="Prestige" weight="0,007"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Légende</name>
+    <type>3</type>
+    <desc>Bénéfice - les hauts faits des chevaliers de la table ronde sont connus dans le monde entier</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>900</actThres>
+    <deactThres>800</deactThres>
+    <value>0</value>
+    <glory>200</glory>
+    <money>10000</money>
+    <outputs>
+      <value val="Graal" weight="0,003"/>
+      <value val="Prestige" weight="0,03"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Graal</name>
+    <type>3</type>
+    <result>1</result>
+    <desc>Benefice - la fin de la quete</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>999</actThres>
+    <deactThres>0</deactThres>
+    <value>0</value>
+  </iValue>
+  <iValue>
+    <name>ChaudronDAbondance</name>
+    <type>3</type>
+    <desc>Bénéfice - rélique gaelle guerissant les blessures et apportant satiété</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>950</actThres>
+    <deactThres>0</deactThres>
+    <value>100</value>
+    <glory>100</glory>
+    <money>1000</money>
+    <difficulty>easy</difficulty>
+    <outputs>
+      <value val="Paysans" weight="0,02"/>
+      <value val="Chevaliers" weight="0,02"/>
+      <value val="Prestige" weight="0,007"/>
+      <value val="Abondance" weight="0,08"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>LanceDeLug</name>
+    <type>3</type>
+    <desc>Bénéfice - relique Dana'an permettant des victoires faciles</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>950</actThres>
+    <deactThres>0</deactThres>
+    <value>500</value>
+    <glory>100</glory>
+    <money>1000</money>
+    <outputs>
+      <value val="Chevaliers" weight="0,07"/>
+      <value val="Barbares" weight="-0,02"/>
+      <value val="Prestige" weight="0,007"/>
+      <value val="Securite" weight="0,05"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Merlin</name>
+    <type>3</type>
+    <desc>Bénéfice - enchanteur de légende</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyLinear</effect>
+    <min>0</min>
+    <max>1000</max>
+    <difficulty>medium</difficulty>
+    <actThres>950</actThres>
+    <deactThres>0</deactThres>
+    <value>500</value>
+    <glory>25</glory>
+    <money>25</money>
+    <outputs>
+      <value val="Chevaliers" weight="0,007"/>
+      <value val="Barbares" weight="-0,002"/>
+      <value val="Prestige" weight="0,005"/>
+      <value val="Criminalite" weight="-0,005"/>
+      <value val="Legende" weight="0,007"/>
+      <value val="Graal" weight="0,002"/>
+      <value val="Education" weight="0,01"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>TableRonde</name>
+    <type>3</type>
+    <desc>Bénéfice - lieu de ralliement pour les chevaliers</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <min>0</min>
+    <max>1000</max>
+    <difficulty>medium</difficulty>
+    <actThres>950</actThres>
+    <deactThres>0</deactThres>
+    <value>200</value>
+    <glory>100</glory>
+    <money>10</money>
+    <outputs>
+      <value val="Chevaliers" weight="0,025"/>
+      <value val="Barbares" weight="-0,007"/>
+      <value val="Prestige" weight="0,03"/>
+      <value val="Criminalite" weight="-0,005"/>
+      <value val="Legende" weight="0,015"/>
+      <value val="Graal" weight="0,005"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Chaos</name>
+    <type>4</type>
+    <desc>Problème - le pays est ravagé par les envahisseurs et les brigands</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>300</actThres>
+    <deactThres>250</deactThres>
+    <value>200</value>
+    <glory>-500</glory>
+    <money>-1000000</money>
+    <outputs>
+      <value val="Chevaliers" weight="-0,2"/>
+      <value val="Paysans" weight="-0,5"/>
+      <value val="Barbares" weight="0,7"/>
+      <value val="Criminalite" weight="0,5"/>
+      <value val="Mordred" weight="0,1"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Revolte</name>
+    <type>4</type>
+    <desc>Problème - les paysans exigent de meilleures conditions de vie, le peuple gronde</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>250</actThres>
+    <deactThres>125</deactThres>
+    <value>120</value>
+    <glory>-100</glory>
+    <money>-5000000</money>
+    <outputs>
+      <value val="Chevaliers" weight="-0,5"/>
+      <value val="Paysans" weight="-0,2"/>
+      <value val="Barbares" weight="0,7"/>
+      <value val="Pauvrete" weight="0,5"/>
+      <value val="Mordred" weight="0,1"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Disette</name>
+    <type>4</type>
+    <desc>Problème - mauvaises récoltes et pauvreté sont a l'origine d'une grande famine</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>400</actThres>
+    <deactThres>300</deactThres>
+    <value>200</value>
+    <glory>-200</glory>
+    <money>-2000000</money>
+    <outputs>
+      <value val="Chevaliers" weight="-0,5"/>
+      <value val="Paysans" weight="-0,7"/>
+      <value val="Barbares" weight="0,2"/>
+      <value val="Criminalite" weight="0,1"/>
+      <value val="Pauvrete" weight="0,3"/>
+      <value val="Hygiene" weight="-0,1"/>
+      <value val="Mordred" weight="0,1"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Epidemie</name>
+    <type>4</type>
+    <desc>Problème - un manque d'hygiène et de mauvaises habitudes provoquent des épidemies ravageant la population</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>500</actThres>
+    <deactThres>425</deactThres>
+    <value>250</value>
+    <glory>-250</glory>
+    <money>-1500000</money>
+    <outputs>
+      <value val="Chevaliers" weight="-0,1"/>
+      <value val="Paysans" weight="-0,9"/>
+      <value val="Barbares" weight="0,1"/>
+      <value val="Criminalite" weight="0,1"/>
+      <value val="Pauvrete" weight="0,5"/>
+      <value val="Hygiene" weight="-0,2"/>
+      <value val="Mordred" weight="0,1"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Malediction</name>
+    <type>4</type>
+    <desc>Problème - les actes des chevaliers poussent les dieux a les maudire</desc>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>750</actThres>
+    <deactThres>700</deactThres>
+    <value>500</value>
+    <glory>-250</glory>
+    <money>-100</money>
+    <outputs>
+      <value val="Chevaliers" weight="-0,2"/>
+      <value val="Paysans" weight="-0,3"/>
+      <value val="Barbares" weight="0,5"/>
+      <value val="Mordred" weight="0,3"/>
+    </outputs>
+  </iValue>
+  <iValue>
+    <name>Mordred</name>
+    <type>4</type>
+    <desc>Problème - le mal vient de gagner</desc>
+    <result>2</result>
+    <active>false</active>
+    <cost>linear</cost>
+    <effect>policyExp</effect>
+    <min>0</min>
+    <max>1000</max>
+    <actThres>999</actThres>
+    <deactThres>0</deactThres>
+    <value>100</value>
+    <glory>-1</glory>
+    <money>-1</money>
+    <!--g = paysans, chevaliers, barbares-->
+    <!--i = pauvrete, education, hygiene, egalite, criminalite, prestige-->
+    <!--d = subventions, ecoles, theatres, thermes, gardes, juges, doleances, enchanteurs, pretres-->
+    <!--t = impots, taxeLuxe, taxeAlcool, taxeFonciere, emprunts-->
+    <!--q = repousserBarbares, agrandirTerritoires, templesPerdus, monstres, dragons, bandits, queteGraal-->
+    <!--bs = abondance, ageDOr, securite, bonneSante, legende, Graal-->
+    <!--a = excalibur, chaudronDAbondance, lanceDeLug, Merlin, tableRonde-->
+    <!--cs = Chaos, Revolte, disette, epidemie, malediction, Mordred-->
+  </iValue>
+</Xml>

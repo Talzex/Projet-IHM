@@ -1,0 +1,11 @@
+V:\S2\IHMS2\BaseSim2021\bin\Debug\BaseSim2021.exe.config
+V:\S2\IHMS2\BaseSim2021\bin\Debug\BaseSim2021.exe
+V:\S2\IHMS2\BaseSim2021\bin\Debug\BaseSim2021.pdb
+V:\S2\IHMS2\BaseSim2021\obj\Debug\BaseSim2021.csprojAssemblyReference.cache
+V:\S2\IHMS2\BaseSim2021\obj\Debug\BaseSim2021.DifficultyView.resources
+V:\S2\IHMS2\BaseSim2021\obj\Debug\BaseSim2021.GameView.resources
+V:\S2\IHMS2\BaseSim2021\obj\Debug\BaseSim2021.Properties.Resources.resources
+V:\S2\IHMS2\BaseSim2021\obj\Debug\BaseSim2021.csproj.GenerateResource.cache
+V:\S2\IHMS2\BaseSim2021\obj\Debug\BaseSim2021.csproj.CoreCompileInputs.cache
+V:\S2\IHMS2\BaseSim2021\obj\Debug\BaseSim2021.exe
+V:\S2\IHMS2\BaseSim2021\obj\Debug\BaseSim2021.pdb
