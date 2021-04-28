@@ -17,9 +17,9 @@ namespace BaseSim2021
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             WorldState.Difficulty diff = WorldState.Difficulty.Easy;
-            /* DifficultyView dv = new DifficultyView();
+             DifficultyView dv = new DifficultyView();
             dv.ShowDialog();
-            diff = dv.Difficulty; */
+            diff = dv.Difficulty; 
             WorldState theWorld = new WorldState(diff, "../../Logres.xml");
             GameView theView = new GameView(theWorld);
             GameController.SetView(theView);
