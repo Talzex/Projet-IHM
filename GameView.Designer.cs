@@ -40,9 +40,10 @@ namespace BaseSim2021
             // 
             // inputTextBox
             // 
-            this.inputTextBox.Location = new System.Drawing.Point(211, 582);
+            this.inputTextBox.Location = new System.Drawing.Point(11, 400);
+            this.inputTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(914, 31);
+            this.inputTextBox.Size = new System.Drawing.Size(459, 20);
             this.inputTextBox.TabIndex = 0;
             this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputTextBox_KeyDown);
             // 
@@ -50,19 +51,20 @@ namespace BaseSim2021
             // 
             this.outputListBox.FormattingEnabled = true;
             this.outputListBox.HorizontalScrollbar = true;
-            this.outputListBox.ItemHeight = 25;
-            this.outputListBox.Location = new System.Drawing.Point(12, 12);
+            this.outputListBox.Location = new System.Drawing.Point(11, 119);
+            this.outputListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.outputListBox.Name = "outputListBox";
-            this.outputListBox.Size = new System.Drawing.Size(2006, 529);
+            this.outputListBox.Size = new System.Drawing.Size(932, 277);
             this.outputListBox.TabIndex = 1;
             // 
             // diffLabel
             // 
             this.diffLabel.AutoSize = true;
             this.diffLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.diffLabel.Location = new System.Drawing.Point(85, 692);
+            this.diffLabel.Location = new System.Drawing.Point(23, 9);
+            this.diffLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.diffLabel.Name = "diffLabel";
-            this.diffLabel.Size = new System.Drawing.Size(42, 25);
+            this.diffLabel.Size = new System.Drawing.Size(22, 13);
             this.diffLabel.TabIndex = 2;
             this.diffLabel.Text = "     ";
             // 
@@ -70,9 +72,10 @@ namespace BaseSim2021
             // 
             this.turnLabel.AutoSize = true;
             this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.turnLabel.Location = new System.Drawing.Point(399, 692);
+            this.turnLabel.Location = new System.Drawing.Point(26, 40);
+            this.turnLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.turnLabel.Name = "turnLabel";
-            this.turnLabel.Size = new System.Drawing.Size(36, 25);
+            this.turnLabel.Size = new System.Drawing.Size(19, 13);
             this.turnLabel.TabIndex = 3;
             this.turnLabel.Text = "    ";
             // 
@@ -80,9 +83,10 @@ namespace BaseSim2021
             // 
             this.moneyLabel.AutoSize = true;
             this.moneyLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.moneyLabel.Location = new System.Drawing.Point(905, 692);
+            this.moneyLabel.Location = new System.Drawing.Point(29, 67);
+            this.moneyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.moneyLabel.Name = "moneyLabel";
-            this.moneyLabel.Size = new System.Drawing.Size(30, 25);
+            this.moneyLabel.Size = new System.Drawing.Size(16, 13);
             this.moneyLabel.TabIndex = 4;
             this.moneyLabel.Text = "   ";
             // 
@@ -90,17 +94,19 @@ namespace BaseSim2021
             // 
             this.gloryLabel.AutoSize = true;
             this.gloryLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.gloryLabel.Location = new System.Drawing.Point(1365, 692);
+            this.gloryLabel.Location = new System.Drawing.Point(29, 104);
+            this.gloryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.gloryLabel.Name = "gloryLabel";
-            this.gloryLabel.Size = new System.Drawing.Size(30, 25);
+            this.gloryLabel.Size = new System.Drawing.Size(16, 13);
             this.gloryLabel.TabIndex = 5;
             this.gloryLabel.Text = "   ";
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(1747, 692);
+            this.nextButton.Location = new System.Drawing.Point(863, 1);
+            this.nextButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(159, 41);
+            this.nextButton.Size = new System.Drawing.Size(80, 21);
             this.nextButton.TabIndex = 6;
             this.nextButton.Text = "Tour Suivant";
             this.nextButton.UseVisualStyleBackColor = true;
@@ -108,10 +114,10 @@ namespace BaseSim2021
             // 
             // GameView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(2074, 829);
+            this.ClientSize = new System.Drawing.Size(962, 431);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.gloryLabel);
             this.Controls.Add(this.moneyLabel);
@@ -120,6 +126,7 @@ namespace BaseSim2021
             this.Controls.Add(this.outputListBox);
             this.Controls.Add(this.inputTextBox);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "GameView";
             this.Text = "Fenêtre Principale";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameView_Paint);

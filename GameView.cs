@@ -13,6 +13,7 @@ namespace BaseSim2021
     public partial class GameView : Form
     {
         private readonly WorldState theWorld;
+        
         /// <summary>
         /// The constructor for the main window
         /// </summary>
@@ -57,13 +58,35 @@ namespace BaseSim2021
 
         private void GameView_Paint(object sender, PaintEventArgs e)
         {
-            
             diffLabel.Text = "Difficulté : " + theWorld.TheDifficulty;
             turnLabel.Text = "Tour " + theWorld.Turns;
             moneyLabel.Text = "Trésor : " + theWorld.Money + " pièces d'or";
             gloryLabel.Text = "Gloire : " + theWorld.Glory;
-            
+
             nextButton.Visible = true;
+
+            // PolRectangle:0,600,2100,300; w:80, h:80, 
+            int margin = 10;
+            Rectangle PolRectangle = new Rectangle(new Point(0, 450), new Size(80, 80));
+            
+            int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
+            List<IndexedValueView> polViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Policies)
+            {
+                polViews.Add(new IndexedValueView(p, new Size(80, 80),Color.Black, new Point(x, y),p.Name));
+                x += PolRectangle.Size.Width + margin;
+                if (x > PolRectangle.Right)
+                {
+                    x += margin/2;
+                    y += 0;
+                }
+            }
+
+            foreach(IndexedValueView p in polViews)
+            {
+                p.Dessine(e.Graphics);
+            }
+
         }
         #endregion
 
