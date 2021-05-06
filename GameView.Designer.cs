@@ -30,38 +30,29 @@ namespace BaseSim2021
         private void InitializeComponent()
         {
             this.inputTextBox = new System.Windows.Forms.TextBox();
-            this.outputListBox = new System.Windows.Forms.ListBox();
             this.diffLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.moneyLabel = new System.Windows.Forms.Label();
             this.gloryLabel = new System.Windows.Forms.Label();
             this.nextButton = new System.Windows.Forms.Button();
+            this.outputListBox = new System.Windows.Forms.ListBox();
+            this.victoryEasyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // inputTextBox
             // 
-            this.inputTextBox.Location = new System.Drawing.Point(11, 400);
-            this.inputTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputTextBox.Location = new System.Drawing.Point(1091, 285);
+            this.inputTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(459, 20);
+            this.inputTextBox.Size = new System.Drawing.Size(262, 20);
             this.inputTextBox.TabIndex = 0;
             this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputTextBox_KeyDown);
-            // 
-            // outputListBox
-            // 
-            this.outputListBox.FormattingEnabled = true;
-            this.outputListBox.HorizontalScrollbar = true;
-            this.outputListBox.Location = new System.Drawing.Point(11, 119);
-            this.outputListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.outputListBox.Name = "outputListBox";
-            this.outputListBox.Size = new System.Drawing.Size(932, 277);
-            this.outputListBox.TabIndex = 1;
             // 
             // diffLabel
             // 
             this.diffLabel.AutoSize = true;
             this.diffLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.diffLabel.Location = new System.Drawing.Point(23, 9);
+            this.diffLabel.Location = new System.Drawing.Point(11, 9);
             this.diffLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.diffLabel.Name = "diffLabel";
             this.diffLabel.Size = new System.Drawing.Size(22, 13);
@@ -72,7 +63,7 @@ namespace BaseSim2021
             // 
             this.turnLabel.AutoSize = true;
             this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.turnLabel.Location = new System.Drawing.Point(26, 40);
+            this.turnLabel.Location = new System.Drawing.Point(108, 9);
             this.turnLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.turnLabel.Name = "turnLabel";
             this.turnLabel.Size = new System.Drawing.Size(19, 13);
@@ -83,7 +74,7 @@ namespace BaseSim2021
             // 
             this.moneyLabel.AutoSize = true;
             this.moneyLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.moneyLabel.Location = new System.Drawing.Point(29, 67);
+            this.moneyLabel.Location = new System.Drawing.Point(181, 9);
             this.moneyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.moneyLabel.Name = "moneyLabel";
             this.moneyLabel.Size = new System.Drawing.Size(16, 13);
@@ -94,7 +85,7 @@ namespace BaseSim2021
             // 
             this.gloryLabel.AutoSize = true;
             this.gloryLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.gloryLabel.Location = new System.Drawing.Point(29, 104);
+            this.gloryLabel.Location = new System.Drawing.Point(367, 9);
             this.gloryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.gloryLabel.Name = "gloryLabel";
             this.gloryLabel.Size = new System.Drawing.Size(16, 13);
@@ -103,8 +94,8 @@ namespace BaseSim2021
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(863, 1);
-            this.nextButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nextButton.Location = new System.Drawing.Point(1275, 5);
+            this.nextButton.Margin = new System.Windows.Forms.Padding(2);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(80, 21);
             this.nextButton.TabIndex = 6;
@@ -112,12 +103,34 @@ namespace BaseSim2021
             this.nextButton.UseVisualStyleBackColor = true;
             this.nextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
+            // outputListBox
+            // 
+            this.outputListBox.FormattingEnabled = true;
+            this.outputListBox.HorizontalScrollbar = true;
+            this.outputListBox.Location = new System.Drawing.Point(704, 117);
+            this.outputListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.outputListBox.Name = "outputListBox";
+            this.outputListBox.Size = new System.Drawing.Size(649, 147);
+            this.outputListBox.TabIndex = 1;
+            // 
+            // victoryEasyButton
+            // 
+            this.victoryEasyButton.Location = new System.Drawing.Point(927, 5);
+            this.victoryEasyButton.Margin = new System.Windows.Forms.Padding(2);
+            this.victoryEasyButton.Name = "victoryEasyButton";
+            this.victoryEasyButton.Size = new System.Drawing.Size(110, 21);
+            this.victoryEasyButton.TabIndex = 7;
+            this.victoryEasyButton.Text = "Victoire Cheat";
+            this.victoryEasyButton.UseVisualStyleBackColor = true;
+            this.victoryEasyButton.Click += new System.EventHandler(this.victoryEasyButton_Click);
+            // 
             // GameView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(962, 431);
+            this.ClientSize = new System.Drawing.Size(1364, 711);
+            this.Controls.Add(this.victoryEasyButton);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.gloryLabel);
             this.Controls.Add(this.moneyLabel);
@@ -126,7 +139,8 @@ namespace BaseSim2021
             this.Controls.Add(this.outputListBox);
             this.Controls.Add(this.inputTextBox);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GameView";
             this.Text = "Fenêtre Principale";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameView_Paint);
@@ -138,12 +152,13 @@ namespace BaseSim2021
         #endregion
 
         private System.Windows.Forms.TextBox inputTextBox;
-        private System.Windows.Forms.ListBox outputListBox;
         private System.Windows.Forms.Label diffLabel;
         private System.Windows.Forms.Label turnLabel;
         private System.Windows.Forms.Label moneyLabel;
         private System.Windows.Forms.Label gloryLabel;
         private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.ListBox outputListBox;
+        private System.Windows.Forms.Button victoryEasyButton;
     }
 }
 
