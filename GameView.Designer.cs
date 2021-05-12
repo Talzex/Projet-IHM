@@ -41,10 +41,10 @@ namespace BaseSim2021
             // 
             // inputTextBox
             // 
-            this.inputTextBox.Location = new System.Drawing.Point(1091, 285);
+            this.inputTextBox.Location = new System.Drawing.Point(674, 1);
             this.inputTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(262, 20);
+            this.inputTextBox.Size = new System.Drawing.Size(53, 20);
             this.inputTextBox.TabIndex = 0;
             this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputTextBox_KeyDown);
             // 
@@ -94,7 +94,7 @@ namespace BaseSim2021
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(1275, 5);
+            this.nextButton.Location = new System.Drawing.Point(753, 1);
             this.nextButton.Margin = new System.Windows.Forms.Padding(2);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(80, 21);
@@ -107,15 +107,15 @@ namespace BaseSim2021
             // 
             this.outputListBox.FormattingEnabled = true;
             this.outputListBox.HorizontalScrollbar = true;
-            this.outputListBox.Location = new System.Drawing.Point(704, 117);
+            this.outputListBox.Location = new System.Drawing.Point(577, 1);
             this.outputListBox.Margin = new System.Windows.Forms.Padding(2);
             this.outputListBox.Name = "outputListBox";
-            this.outputListBox.Size = new System.Drawing.Size(649, 147);
+            this.outputListBox.Size = new System.Drawing.Size(76, 17);
             this.outputListBox.TabIndex = 1;
             // 
             // victoryEasyButton
             // 
-            this.victoryEasyButton.Location = new System.Drawing.Point(927, 5);
+            this.victoryEasyButton.Location = new System.Drawing.Point(463, 1);
             this.victoryEasyButton.Margin = new System.Windows.Forms.Padding(2);
             this.victoryEasyButton.Name = "victoryEasyButton";
             this.victoryEasyButton.Size = new System.Drawing.Size(110, 21);
@@ -129,7 +129,7 @@ namespace BaseSim2021
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1364, 711);
+            this.ClientSize = new System.Drawing.Size(1359, 686);
             this.Controls.Add(this.victoryEasyButton);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.gloryLabel);

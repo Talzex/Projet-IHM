@@ -12,6 +12,7 @@ namespace BaseSim2021
 {
     public partial class GameView : Form
     {
+        int margin;
         private readonly WorldState theWorld;
         
         /// <summary>
@@ -21,6 +22,7 @@ namespace BaseSim2021
         {
             InitializeComponent();
             theWorld = world;
+            margin = 10;
         }
         /// <summary>
         /// Method called by the controler whenever some text should be displayed
@@ -66,7 +68,9 @@ namespace BaseSim2021
             nextButton.Visible = true;
             Policies(e);
             Perks(e);
-            
+            Crises(e);
+            Indicators(e);
+            Groups(e);
 
         }
         #endregion
@@ -98,9 +102,7 @@ namespace BaseSim2021
 
         public void Policies(PaintEventArgs e)
         {
-            // PolRectangle:0,600,2100,300; w:80, h:80, 
-            int margin = 10;
-            Rectangle PolRectangle = new Rectangle(new Point(0, 450), new Size(80, 80));
+            Rectangle PolRectangle = new Rectangle(new Point(0, 500), new Size(80, 80));
             int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
             List<IndexedValueView> polViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Policies)
@@ -109,7 +111,7 @@ namespace BaseSim2021
                 x += PolRectangle.Width + margin;
                 if (x+PolRectangle.Width+margin > Width)
                 {
-                    x = Width/2 - Width/4 + margin*2;
+                    x = Width/2 - Width/4 + margin*2 + margin/2;
                     y += PolRectangle.Height + margin;
                 }
             }
@@ -122,18 +124,16 @@ namespace BaseSim2021
 
         public void Perks(PaintEventArgs e)
         {
-            // PerksRectangle:0,20,2100,300; w:80, h:80,
-            int margin = 10;
-            Rectangle PerksRectangle = new Rectangle(new Point(0, 20), new Size(80, 80));
+            Rectangle PerksRectangle = new Rectangle(new Point(180, 30), new Size(80, 80));
             int x = PerksRectangle.X + margin, y = PerksRectangle.Y + margin;
             List<IndexedValueView> perksViews = new List<IndexedValueView>();
             foreach(IndexedValue p in theWorld.Perks)
             {
                 perksViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
                 x += PerksRectangle.Width + margin;
-                if (x + PerksRectangle.Width + margin > Width/2)
+                if (x + PerksRectangle.Width + margin > Width)
                 {
-                    x = Width/4  - Width/6 + margin*2;
+                    x = Width  - Width/2 + margin*2;
                     y += PerksRectangle.Height + margin;
                 }
             }
@@ -144,6 +144,70 @@ namespace BaseSim2021
             }
 
         }
+
+        public void Crises(PaintEventArgs e)
+        {
+            Rectangle CrisesRectangle = new Rectangle(new Point(405, 120), new Size(80, 80));
+            int x = CrisesRectangle.X + margin, y = CrisesRectangle.Y + margin;
+            List<IndexedValueView> crisesViews = new List<IndexedValueView>();
+            foreach(IndexedValue p in theWorld.Crises)
+            {
+                crisesViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
+                x += CrisesRectangle.Width + margin;
+                if (x + CrisesRectangle.Width + margin > Width)
+                {
+                    x = Width - Width / 2 + margin * 2;
+                    y += CrisesRectangle.Height + margin;
+                }
+            }
+
+            foreach (IndexedValueView p in crisesViews)
+            {
+                p.Dessine(e.Graphics);
+            }
+        }
+        public void Indicators(PaintEventArgs e)
+        {
+            Rectangle IndicRectangle = new Rectangle(new Point(90, 200), new Size(80, 80));
+            int x = IndicRectangle.X + margin, y = IndicRectangle.Y + margin;
+            List<IndexedValueView> indicViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Indicators)
+            {
+                indicViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
+                y += IndicRectangle.Width + margin;
+                if(y + IndicRectangle.Width + margin > 480)
+                {
+                    x = Width - 190;
+                    y = 200;
+                }
+
+            }
+
+            foreach (IndexedValueView p in indicViews)
+            {
+                p.Dessine(e.Graphics);
+            }
+        }
+
+        public void Groups(PaintEventArgs e)
+        {
+            Rectangle GroupsRectangle = new Rectangle(new Point(535, 290), new Size(80, 80));
+            int x = GroupsRectangle.X + margin, y = GroupsRectangle.Y + margin;
+            List<IndexedValueView> indicViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Groups)
+            {
+                indicViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
+                x += GroupsRectangle.Width + margin;
+                
+            }
+
+            foreach (IndexedValueView p in indicViews)
+            {
+                p.Dessine(e.Graphics);
+            }
+        }
+
+        
 
         private void victoryEasyButton_Click(object sender, EventArgs e)
         {
