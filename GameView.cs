@@ -12,9 +12,12 @@ namespace BaseSim2021
 {
     public partial class GameView : Form
     {
+        public List<IndexedValueView> indexedValueViews;
         int margin;
+        private IndexedValueView sélection;
         private readonly WorldState theWorld;
-        
+        private ChangeVal changeval;
+
         /// <summary>
         /// The constructor for the main window
         /// </summary>
@@ -23,6 +26,7 @@ namespace BaseSim2021
             InitializeComponent();
             theWorld = world;
             margin = 10;
+            indexedValueViews = new List<IndexedValueView>();
         }
         /// <summary>
         /// Method called by the controler whenever some text should be displayed
@@ -74,6 +78,38 @@ namespace BaseSim2021
 
         }
         #endregion
+        private void GameView_MouseDown(object sender, MouseEventArgs e)
+        {
+            sélection = Selection(e.Location);
+
+            if(e.Button == MouseButtons.Left)
+            {
+                if(sélection != null && sélection.Type.ToString() == "Policy" && sélection.theValue.Active != false)
+                {
+                    int val = Convert.ToInt32(sélection.Valeur);
+                    changeval = new ChangeVal(val);
+                    if (changeval.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        
+                        int mCost;
+                        int gCost;
+                        val = changeval.Valeur;
+                        sélection.theValue.PreviewPolicyChange(ref val , out mCost, out gCost);
+                        if (gCost < 0)
+                        {
+                            if (theWorld.CostGlory(gCost))
+                            {
+                                sélection.theValue.ChangeTo(val, out _, out _);
+                                Refresh();
+                                return;
+                            }
+                        }
+                        sélection.theValue.ChangeTo(val, out _, out _);
+                        Refresh();
+                    }
+                }
+            }
+        }
 
         private void NextButton_Click(object sender, EventArgs e)
         {
@@ -98,7 +134,10 @@ namespace BaseSim2021
             nextButton.Enabled = false;
         }
         
-        
+        public IndexedValueView Selection(Point p)
+        {
+            return indexedValueViews.FirstOrDefault(c => c.Contient(p));
+        }
 
         public void Policies(PaintEventArgs e)
         {
@@ -107,19 +146,22 @@ namespace BaseSim2021
             List<IndexedValueView> polViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Policies)
             {
-                polViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
+                polViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString(), Brushes.DimGray));
+                indexedValueViews.AddRange(polViews);
                 x += PolRectangle.Width + margin;
                 if (x+PolRectangle.Width+margin > Width)
                 {
-                    x = Width/2 - Width/4 + margin*2 + margin/2;
+                    x = Width/2 - Width/4 + margin*6 ;
                     y += PolRectangle.Height + margin;
                 }
+                
             }
 
             foreach (IndexedValueView p in polViews)
             {
                 p.Dessine(e.Graphics);
             }
+            Refresh();
         }
 
         public void Perks(PaintEventArgs e)
@@ -129,7 +171,8 @@ namespace BaseSim2021
             List<IndexedValueView> perksViews = new List<IndexedValueView>();
             foreach(IndexedValue p in theWorld.Perks)
             {
-                perksViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
+                perksViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString(), Brushes.Cyan));
+                indexedValueViews.AddRange(perksViews);
                 x += PerksRectangle.Width + margin;
                 if (x + PerksRectangle.Width + margin > Width)
                 {
@@ -152,7 +195,8 @@ namespace BaseSim2021
             List<IndexedValueView> crisesViews = new List<IndexedValueView>();
             foreach(IndexedValue p in theWorld.Crises)
             {
-                crisesViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
+                crisesViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString(), Brushes.GreenYellow));
+                indexedValueViews.AddRange(crisesViews);
                 x += CrisesRectangle.Width + margin;
                 if (x + CrisesRectangle.Width + margin > Width)
                 {
@@ -173,7 +217,8 @@ namespace BaseSim2021
             List<IndexedValueView> indicViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Indicators)
             {
-                indicViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
+                indicViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString(), Brushes.LightYellow));
+                indexedValueViews.AddRange(indicViews);
                 y += IndicRectangle.Width + margin;
                 if(y + IndicRectangle.Width + margin > 480)
                 {
@@ -193,15 +238,16 @@ namespace BaseSim2021
         {
             Rectangle GroupsRectangle = new Rectangle(new Point(535, 290), new Size(80, 80));
             int x = GroupsRectangle.X + margin, y = GroupsRectangle.Y + margin;
-            List<IndexedValueView> indicViews = new List<IndexedValueView>();
+            List<IndexedValueView> groupsViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Groups)
             {
-                indicViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString()));
+                groupsViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString(), Brushes.LightSalmon));
+                indexedValueViews.AddRange(groupsViews);
                 x += GroupsRectangle.Width + margin;
                 
             }
 
-            foreach (IndexedValueView p in indicViews)
+            foreach (IndexedValueView p in groupsViews)
             {
                 p.Dessine(e.Graphics);
             }
@@ -269,5 +315,7 @@ namespace BaseSim2021
             GameController.Interpret("suivant");
             GameController.Interpret("suivant");
         }
+
+        
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaseSim2021
 {
-    class IndexedValueView
+    public class IndexedValueView
     {
         public readonly IndexedValue theValue;
         
@@ -18,15 +18,18 @@ namespace BaseSim2021
         public String Texte { get; set; }
         public String Valeur { get; set; }
 
-        public IndexedValueView(IndexedValue theValue, Size Taille, Color Couleur, Point Coordonnées, String Type, String Nom, String Valeur)
+        public Brush Col { get; set; }
+
+        public IndexedValueView(IndexedValue theValue, Size Taille, Color Couleur, Point Coordonnées, String Type, String Nom, String Valeur, Brush Col)
         {
             this.theValue = theValue;
             this.Taille = Taille;
             this.Couleur = Couleur;
             this.Coordonnées = Coordonnées;
             this.Type = Type;
-            this.Texte = Nom;
+            Texte = Nom;
             this.Valeur = Valeur;
+            this.Col = Col;
         }
         public void Dessine(Graphics g)
         {
@@ -37,9 +40,10 @@ namespace BaseSim2021
 
 
             Rectangle r = new Rectangle(Coordonnées, Taille);
-            Pen p = new Pen(Couleur);
+            Pen p = new Pen(Couleur, 3);
             g.DrawRectangle(p, r);
-            
+            g.FillRectangle(Col, r);
+
             stringFormatType.Alignment = StringAlignment.Center;
             stringFormatType.LineAlignment = StringAlignment.Near;
             g.DrawString(Type, new Font("Times New Roman", 12, FontStyle.Bold), Brushes.Black, r, stringFormatType); ;
@@ -53,6 +57,12 @@ namespace BaseSim2021
             stringFormatValeur.LineAlignment = StringAlignment.Far;
             g.DrawString(Valeur, new Font("Times New Roman", 8, FontStyle.Italic), Brushes.Black, r, stringFormatValeur);
         }
-        
+
+        public bool Contient(Point p)
+        {
+            Rectangle r = new Rectangle(Coordonnées, Taille);
+            return r.Contains(p);
+        }
+
     }
 }
