@@ -84,16 +84,19 @@ namespace BaseSim2021
 
             if(e.Button == MouseButtons.Left)
             {
-                if(sélection != null && sélection.Type.ToString() == "Policy" && sélection.theValue.Active != false)
+                if(sélection != null && 
+                   sélection.Type.ToString() == "Policy" && 
+                   sélection.theValue.Active != false ||
+                   sélection.theValue.AvailableAt <= theWorld.Turns)
                 {
                     int val = Convert.ToInt32(sélection.Valeur);
                     changeval = new ChangeVal(val);
-                    if (changeval.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    if (changeval.ShowDialog() == DialogResult.OK)
                     {
-                        
+                        val = changeval.Valeur;
                         int mCost;
                         int gCost;
-                        val = changeval.Valeur;
+                        Console.WriteLine(changeval.Valeur);
                         sélection.theValue.PreviewPolicyChange(ref val , out mCost, out gCost);
                         if (gCost < 0)
                         {
@@ -105,8 +108,29 @@ namespace BaseSim2021
                             }
                         }
                         sélection.theValue.ChangeTo(val, out _, out _);
-                        Refresh();
+                        
                     }
+                    Refresh();
+                }
+            }
+            /*sélection = Selection(e.Location);
+            if (sélection != null)
+            {
+                double val = 0;
+                if (sélection.theValue.OutputWeights.TryGetValue(sélection.theValue, out val))
+                {
+                    if (val > 0)
+                    {
+                        sélection.Couleur = Color.Green;
+                    }
+                }
+            }*/
+            if(e.Button == MouseButtons.Right)
+            {
+                if(sélection != null)
+                {
+                    MessageBox.Show(sélection.theValue.Description);
+                    Refresh();
                 }
             }
         }
@@ -146,7 +170,14 @@ namespace BaseSim2021
             List<IndexedValueView> polViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Policies)
             {
-                polViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString(), Brushes.DimGray));
+                if(p.Active != false || p.AvailableAt <= theWorld.Turns)
+                {
+                    polViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString(), Brushes.LightSlateGray));
+                } else
+                {
+                    polViews.Add(new IndexedValueView(p, new Size(80, 80), Color.Black, new Point(x, y), p.Type.ToString(), p.Name, p.Value.ToString(), Brushes.DarkSlateGray));
+                }
+                
                 indexedValueViews.AddRange(polViews);
                 x += PolRectangle.Width + margin;
                 if (x+PolRectangle.Width+margin > Width)
@@ -315,7 +346,5 @@ namespace BaseSim2021
             GameController.Interpret("suivant");
             GameController.Interpret("suivant");
         }
-
-        
     }
 }
