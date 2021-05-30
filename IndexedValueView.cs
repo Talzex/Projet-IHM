@@ -9,22 +9,16 @@ namespace BaseSim2021
 {
     public class IndexedValueView
     {
-        public readonly IndexedValue theValue;
-        
-        public Size Taille { get; set; }
-        public Color Couleur { get; set; }
+        public IndexedValue theValue;
         public Point Coordonnées { get; set; }
         public String Type { get; set; }
         public String Texte { get; set; }
         public String Valeur { get; set; }
-
         public Brush Col { get; set; }
 
-        public IndexedValueView(IndexedValue theValue, Size Taille, Color Couleur, Point Coordonnées, String Type, String Nom, String Valeur, Brush Col)
+        public IndexedValueView(IndexedValue theValue, Point Coordonnées, String Type, String Nom, String Valeur, Brush Col)
         {
             this.theValue = theValue;
-            this.Taille = Taille;
-            this.Couleur = Couleur;
             this.Coordonnées = Coordonnées;
             this.Type = Type;
             Texte = Nom;
@@ -37,10 +31,11 @@ namespace BaseSim2021
             StringFormat stringFormatType = new StringFormat();
             StringFormat stringFormatNom = new StringFormat();
             StringFormat stringFormatValeur = new StringFormat();
+            StringFormat stringFormatMin = new StringFormat();
+            StringFormat stringFormatMax = new StringFormat();
 
-
-            Rectangle r = new Rectangle(Coordonnées, Taille);
-            Pen p = new Pen(Couleur, 3);
+            Rectangle r = new Rectangle(Coordonnées, new Size(80,80));
+            Pen p = new Pen(Color.Black, 3);
             g.DrawRectangle(p, r);
             g.FillRectangle(Col, r);
 
@@ -51,17 +46,36 @@ namespace BaseSim2021
             
             stringFormatNom.Alignment = StringAlignment.Center;
             stringFormatNom.LineAlignment = StringAlignment.Center;
-            g.DrawString(Texte, new Font("Times New Roman", 8, FontStyle.Regular), Brushes.Black,r, stringFormatNom);
+            g.DrawString(Texte, new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Black,r, stringFormatNom);
 
             stringFormatValeur.Alignment = StringAlignment.Center;
             stringFormatValeur.LineAlignment = StringAlignment.Far;
-            g.DrawString(Valeur, new Font("Times New Roman", 8, FontStyle.Italic), Brushes.Black, r, stringFormatValeur);
+            g.DrawString(Valeur, new Font("Times New Roman", 8, FontStyle.Bold), Brushes.Black, r, stringFormatValeur);
+
+            stringFormatMin.Alignment = StringAlignment.Near;
+            stringFormatMin.LineAlignment = StringAlignment.Far;
+            g.DrawString(theValue.MinValue.ToString(), new Font("Times New Roman", 8, FontStyle.Italic), Brushes.Black, r, stringFormatMin);
+
+            stringFormatMax.Alignment = StringAlignment.Far;
+            stringFormatMax.LineAlignment = StringAlignment.Far;
+            g.DrawString(theValue.MaxValue.ToString(), new Font("Times New Roman", 8, FontStyle.Italic), Brushes.Black, r, stringFormatMax);
+
+
         }
 
         public bool Contient(Point p)
         {
-            Rectangle r = new Rectangle(Coordonnées, Taille);
+            Rectangle r = new Rectangle(Coordonnées, new Size(80,80));
             return r.Contains(p);
+        }
+
+        public Point Centre
+        {
+            get
+            {
+                return new Point(Coordonnées.X + 80 / 2,
+           Coordonnées.Y + 80 / 2);
+            }
         }
 
     }

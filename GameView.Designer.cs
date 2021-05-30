@@ -36,15 +36,14 @@ namespace BaseSim2021
             this.gloryLabel = new System.Windows.Forms.Label();
             this.nextButton = new System.Windows.Forms.Button();
             this.outputListBox = new System.Windows.Forms.ListBox();
-            this.victoryEasyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // inputTextBox
             // 
-            this.inputTextBox.Location = new System.Drawing.Point(899, 1);
-            this.inputTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.inputTextBox.Location = new System.Drawing.Point(1273, -1);
+            this.inputTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(69, 22);
+            this.inputTextBox.Size = new System.Drawing.Size(15, 20);
             this.inputTextBox.TabIndex = 0;
             this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputTextBox_KeyDown);
             // 
@@ -52,9 +51,10 @@ namespace BaseSim2021
             // 
             this.diffLabel.AutoSize = true;
             this.diffLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.diffLabel.Location = new System.Drawing.Point(15, 11);
+            this.diffLabel.Location = new System.Drawing.Point(11, 9);
+            this.diffLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.diffLabel.Name = "diffLabel";
-            this.diffLabel.Size = new System.Drawing.Size(28, 17);
+            this.diffLabel.Size = new System.Drawing.Size(22, 13);
             this.diffLabel.TabIndex = 2;
             this.diffLabel.Text = "     ";
             // 
@@ -62,9 +62,10 @@ namespace BaseSim2021
             // 
             this.turnLabel.AutoSize = true;
             this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.turnLabel.Location = new System.Drawing.Point(144, 11);
+            this.turnLabel.Location = new System.Drawing.Point(108, 9);
+            this.turnLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.turnLabel.Name = "turnLabel";
-            this.turnLabel.Size = new System.Drawing.Size(24, 17);
+            this.turnLabel.Size = new System.Drawing.Size(19, 13);
             this.turnLabel.TabIndex = 3;
             this.turnLabel.Text = "    ";
             // 
@@ -72,9 +73,10 @@ namespace BaseSim2021
             // 
             this.moneyLabel.AutoSize = true;
             this.moneyLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.moneyLabel.Location = new System.Drawing.Point(241, 11);
+            this.moneyLabel.Location = new System.Drawing.Point(181, 9);
+            this.moneyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.moneyLabel.Name = "moneyLabel";
-            this.moneyLabel.Size = new System.Drawing.Size(20, 17);
+            this.moneyLabel.Size = new System.Drawing.Size(16, 13);
             this.moneyLabel.TabIndex = 4;
             this.moneyLabel.Text = "   ";
             // 
@@ -82,67 +84,57 @@ namespace BaseSim2021
             // 
             this.gloryLabel.AutoSize = true;
             this.gloryLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.gloryLabel.Location = new System.Drawing.Point(489, 11);
+            this.gloryLabel.Location = new System.Drawing.Point(334, 6);
+            this.gloryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.gloryLabel.Name = "gloryLabel";
-            this.gloryLabel.Size = new System.Drawing.Size(20, 17);
+            this.gloryLabel.Size = new System.Drawing.Size(16, 13);
             this.gloryLabel.TabIndex = 5;
             this.gloryLabel.Text = "   ";
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(1004, 1);
-            this.nextButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nextButton.BackColor = System.Drawing.Color.Transparent;
+            this.nextButton.Location = new System.Drawing.Point(1273, 1);
+            this.nextButton.Margin = new System.Windows.Forms.Padding(2);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(107, 26);
+            this.nextButton.Size = new System.Drawing.Size(80, 21);
             this.nextButton.TabIndex = 6;
             this.nextButton.Text = "Tour Suivant";
-            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.UseVisualStyleBackColor = false;
             this.nextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
             // outputListBox
             // 
             this.outputListBox.FormattingEnabled = true;
             this.outputListBox.HorizontalScrollbar = true;
-            this.outputListBox.ItemHeight = 16;
-            this.outputListBox.Location = new System.Drawing.Point(769, 1);
-            this.outputListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.outputListBox.Location = new System.Drawing.Point(1321, 5);
+            this.outputListBox.Margin = new System.Windows.Forms.Padding(2);
             this.outputListBox.Name = "outputListBox";
-            this.outputListBox.Size = new System.Drawing.Size(100, 20);
+            this.outputListBox.Size = new System.Drawing.Size(15, 17);
             this.outputListBox.TabIndex = 1;
-            // 
-            // victoryEasyButton
-            // 
-            this.victoryEasyButton.Location = new System.Drawing.Point(617, 1);
-            this.victoryEasyButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.victoryEasyButton.Name = "victoryEasyButton";
-            this.victoryEasyButton.Size = new System.Drawing.Size(147, 26);
-            this.victoryEasyButton.TabIndex = 7;
-            this.victoryEasyButton.Text = "Victoire Cheat";
-            this.victoryEasyButton.UseVisualStyleBackColor = true;
-            this.victoryEasyButton.Click += new System.EventHandler(this.victoryEasyButton_Click);
             // 
             // GameView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1819, 906);
-            this.Controls.Add(this.victoryEasyButton);
+            this.ClientSize = new System.Drawing.Size(1364, 735);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.gloryLabel);
             this.Controls.Add(this.moneyLabel);
             this.Controls.Add(this.turnLabel);
             this.Controls.Add(this.diffLabel);
-            this.Controls.Add(this.outputListBox);
             this.Controls.Add(this.inputTextBox);
+            this.Controls.Add(this.outputListBox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GameView";
             this.Text = "Fenêtre Principale";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameView_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GameView_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GameView_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,7 +149,6 @@ namespace BaseSim2021
         private System.Windows.Forms.Label gloryLabel;
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.ListBox outputListBox;
-        private System.Windows.Forms.Button victoryEasyButton;
     }
 }
 
